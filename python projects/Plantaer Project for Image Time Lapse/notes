@@ -1,0 +1,53 @@
+import streamlit as st  # type: ignore
+import cv2  # type: ignore
+import numpy as np  # type: ignore
+from PIL import Image, ExifTags  # type: ignore
+
+st.set_page_config(page_title="Moss Tracker", layout="centered")
+st.title("📸 Simple Moss Growth Tracker 🌿")
+
+upload_file = st.file_uploader("Upload a panel photo", type=["jpg", "jpeg", "png"])
+
+def correct_image_orientation(image: Image.Image):
+    try:
+        for orientation in ExifTags.TAGS.keys():
+            if ExifTags.TAGS[orientation] == 'Orientation':
+                break
+        exif = dict(image._getexif().items())
+
+        if exif[orientation] == 3:
+            image = image.rotate(180, expand=True)
+        elif exif[orientation] == 6:
+            image = image.rotate(270, expand=True)
+        elif exif[orientation] == 8:
+            image = image.rotate(90, expand=True)
+    except Exception:
+        pass
+    return image
+
+if upload_file:
+    img = Image.open(upload_file)
+    img = correct_image_orientation(img)
+    
+   # Resize large images to avoid memory errors
+    max_size = (800, 800)
+    img.thumbnail(max_size, Image.LANCZOS)
+    
+    st.image(img, caption="Uploaded Panel Image", use_column_width=True)
+
+    # Convert to OpenCV image
+    img_cv = cv2.cvtColor(np.array(img), cv2.COLOR_RGB2BGR)
+    hsv = cv2.cvtColor(img_cv, cv2.COLOR_BGR2HSV)
+
+    # Define green hue range for moss
+    lower_green = np.array([30, 40, 40])
+    upper_green = np.array([90, 255, 255])
+    mask = cv2.inRange(hsv, lower_green, upper_green)
+
+    # Calculate percentage of green pixels
+    green_pixels = np.sum(mask > 0)
+    total_pixels = mask.size
+    coverage = (green_pixels / total_pixels) * 100
+
+    st.metric("🌿 Moss Coverage (%)", f"{coverage:.2f}")
+    st.image(mask, caption="Detected Moss Areas", use_column_width=True, clamp=True)

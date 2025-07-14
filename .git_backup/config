@@ -1,0 +1,13 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+	ignorecase = true
+	precomposeunicode = true
+[remote "origin"]
+	url = https://github.com/ssarker-alt/my-project.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "new-feature"]
+	remote = origin
+	merge = refs/heads/new-feature

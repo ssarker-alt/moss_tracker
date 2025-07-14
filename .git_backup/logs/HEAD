@@ -1,0 +1,6 @@
+0000000000000000000000000000000000000000 b90d41ffe96dd11db2efcf5c6aa5a45aecacaa64 ssarker-alt <suporna917@gmail.com> 1727386439 -0400	commit (initial): Initial commit with my_project
+b90d41ffe96dd11db2efcf5c6aa5a45aecacaa64 e5d20f83de879e0a516ddac176563321677b3ffd ssarker-alt <suporna917@gmail.com> 1727389711 -0400	commit: Removed my_project and added .CFUserTextEncoding
+e5d20f83de879e0a516ddac176563321677b3ffd 629f3640d76c16477d984b5df4e096c1280b56d3 ssarker-alt <suporna917@gmail.com> 1727389718 -0400	commit: Ignore .CFUserTextEncoding
+629f3640d76c16477d984b5df4e096c1280b56d3 eb10c38069b3cc277d5d88616737176f3a1d6085 ssarker-alt <suporna917@gmail.com> 1727389765 -0400	commit: Ignore .Trash directory
+eb10c38069b3cc277d5d88616737176f3a1d6085 eb10c38069b3cc277d5d88616737176f3a1d6085 ssarker-alt <suporna917@gmail.com> 1727391472 -0400	checkout: moving from master to new-feature
+eb10c38069b3cc277d5d88616737176f3a1d6085 2a9229827c04830f5d8fe320d63be2dd3bc90ef0 ssarker-alt <suporna917@gmail.com> 1727902918 -0400	commit: Add hello_world_file.ipynb
